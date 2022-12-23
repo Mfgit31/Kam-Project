@@ -7,4 +7,12 @@ class Appointment < ApplicationRecord
   def amira 
     " :) "
   end
+
+  def marcos 
+    'hello'
+  end
+
+
+
+
 end
