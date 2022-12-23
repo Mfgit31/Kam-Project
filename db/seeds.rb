@@ -92,16 +92,19 @@ h15 = Housing.create(
     3 BEDROOM TOWNHOUSE END UNIT FOUR BROTHERS COMMUNITY. FORMAL LIVING ROOM, FORMAL DINING ROOM, EAT IN KITCHEN, 2 BATHS, LAUNDRY ROOM, LARGE ATTIC, STORAGE, FRONT FENCED IN PATIO WITH TENNIS, POOL & PLAYGROUND, NEW HEAT & A/C UNITS. LEVEL 1: ENTRY, FORMAL LIVING ROOM, DINING ROOM, 1/2 BATH, EAT IN KITCHEN, LAUNDRY & UTILITY ROOM. LEVEL 2: 3 BEDROOMS, FULL BATH WITH SHOWER AND TUB. LEVEL 3: LARGE ATTIC STORAGE AND SKYLIGHT", 
     price: 650000 )
 
+
 puts "making appointments"
 
-20.times {Appointment.create(date: Faker::Date.between(from: '2023-01-02', to: '2024-01-01'),
-            time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-
-            #Foreign Keys
-
-           customer: Customer.all.sample,
-           housing: Housing.all.sample)}
-
+Appointment.create(customer_id: c1.id, housing_id: h1.id, date: "01-07-2022", time: "1:00 PM")
+Appointment.create(customer_id: c2.id, housing_id: h2.id, date: "01-14-2022", time: "2:00 PM")
+Appointment.create(customer_id: c3.id, housing_id: h3.id, date: "01-17-2022", time: "3:30 PM")
+Appointment.create(customer_id: c4.id, housing_id: h4.id, date: "02-27-2022", time: "5:00 PM")
+Appointment.create(customer_id: c5.id, housing_id: h5.id, date: "02-28-2022", time: "6:00 PM")
+Appointment.create(customer_id: c6.id, housing_id: h6.id, date: "03-07-2022", time: "5:00 PM")
+Appointment.create(customer_id: c7.id, housing_id: h7.id, date: "03-07-2022", time: "7:00 PM")
+Appointment.create(customer_id: c8.id, housing_id: h8.id, date: "03-17-2022", time: "4:30 PM")
+Appointment.create(customer_id: c9.id, housing_id: h9.id, date: "03-21-2022", time: "6:10 PM")
+Appointment.create(customer_id: c10.id, housing_id: h10.id, date: "03-24-2022", time: "6:30 PM")
 
 puts "seeding completed"
 
