@@ -5,11 +5,27 @@ class CustomersController < ApplicationController
     end
 
     def show
-        render json: show_customer = Customer.find_by_id(params[:id])
+        found_customer = Customer.find_by_id(params[:id])
+
+        if found_customer
+            #sending text response back to viewer
+            render json: found_customer, serializer: CustomerShowSerializer
+        else
+            render json: { "error": "Customer not found" }, status: :not_found
+        end
     end
 
     def create 
-        render json: new_customer = Customer.create!(new_customer_params)
+        new_customer = Customer.new(new_customer_params)
+        
+        if new_customer.save
+            render json: new_customer
+        else
+            render json: {
+                "errors": new_customer.errors.full_messages
+            }, status: :unprocessable_entity
+        end
+
     end
 
     private 
