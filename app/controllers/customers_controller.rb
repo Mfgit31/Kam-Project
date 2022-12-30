@@ -1,5 +1,14 @@
 class CustomersController < ApplicationController
 
+    # #Rescues
+    #     rescue_from ActiveRecord::RecordNotFound, with: :customer_not_found
+    #     rescue_from ActiveRecord::RecordInvalid, with: :customer_unable_to_create
+    # #Rescues
+
+    # ##before_actions
+    #     before_action :customer_find_method, only: [:index, :show, :create]
+    # ##before_actions
+
     def index
         render json: Customer.all, status: :ok
     end
@@ -15,6 +24,22 @@ class CustomersController < ApplicationController
         end
     end
 
+    #POST to /customers
+    # def create
+
+    #     new_customer = Customer.create!(
+
+    #         name: params[:name],
+    #         address: params[:address],
+    #         email: params[:email],
+    #         phone: params[:phone],
+    #         age: params[:age],
+    #         username: params[:username],
+
+    #         password: params[:password]
+            
+    #     )
+    # end
     def create 
         new_customer = Customer.new(new_customer_params)
         
@@ -29,9 +54,21 @@ class CustomersController < ApplicationController
     end
 
     private 
+    # #Issue Finding a Customer
+    # def customer_not_found
+    #     render json: { error: "Customer not found" }
+    # end
+
+    # #Issue Creating a Customer
+    # def customer_unable_to_create( the_invalid_customer )
+        
+    #     render json: { errors: the_invalid_customer.errors.full_message }
+    # end
+
+
 
     def new_customer_params
-        params.permit(:name, :address, :email, :phone, :age)
+        params.permit(:name, :address, :email, :phone, :age, :username, :password)
     end
 end
 

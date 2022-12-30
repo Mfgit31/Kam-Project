@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2022_12_22_212857) do
   create_table "appointments", force: :cascade do |t|
     t.integer "housing_id", null: false
     t.integer "customer_id", null: false
-    t.integer "date"
-    t.integer "time"
+    t.string "date"
+    t.string "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_appointments_on_customer_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_12_22_212857) do
     t.string "email"
     t.integer "phone"
     t.integer "age"
+    t.string "password_digest"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
