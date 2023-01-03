@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Login( { onLogin }) {
+function Login( { onLogin } ) {
 
     const [username, setUsername] = useState("");
 
@@ -20,21 +20,20 @@ function Login( { onLogin }) {
     }
 
 return (
-    <div> 
-        <h1> Hello! </h1>
+  <div> 
     <form onSubmit={handleSubmit}>
         <h3>Login With Username</h3>
-        <label htmlFor="username">Username: </label>
-        <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        />
+          <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
         <button type="submit">Login</button>
     </form>
-    </div>
-    );
+  </div>
+);
 
 }
 export default Login;
