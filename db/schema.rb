@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 2022_12_22_212857) do
     t.string "image"
     t.string "overview"
     t.integer "price"
+    t.boolean "buy"
+    t.boolean "rent"
+    t.boolean "sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
