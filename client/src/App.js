@@ -1,10 +1,11 @@
 import './App.css';
-import {useState, useEffect} from 'react'
-// import {Switch, Route, NavLink} from 'react-router-dom'
-// import Header from './Header';
+import {useState, useEffect} from 'react';
+import {BrowserRouter as Routes, Route} from 'react-router-dom';
+import Header from './Header';
 import CustomerContainer from './CustomerContainer';
 import HousingContainer from './HousingContainer';
-// import Home from './components/Home'
+import Login from './Login';
+import Home from './Home';
 
 function App() {
 
@@ -40,29 +41,38 @@ function App() {
   //   .then(data => setAppointments(data))
   //   }, [])
   
+  function handleLogin(customers) {
+    setCustomers(customers);
+  }
+
+  function handleLogout() {
+    setCustomers(null);
+  }
 
 
   return (
     <div className="App">
-      {/* <Header />
-      <Switch>
+      <h1> Hi! </h1>
+      <Header  customers={customers} onLogout={handleLogout}/>
+      {/* <Routes>
         <Route path="/housing">
-          <HousingContainer housings={housings} onAdd={onAdd} />
+          <HousingContainer housings={housings} />
         </Route>
-        <Route path="/appointment">
-          <Appointments/>
+        <Route exact path="/login">
+          <Login onLogin={handleLogin} />
         </Route>
+        
         <Route path="/customer">
-          <CustomerContainer customers={customers} onAdd={onAdd} />
+          <CustomerContainer customers={customers}  />
         </Route>
         <Route exact path="/">
           <Home />
         </Route>
-      </Switch> */}
+      </Routes> */}
 
 
-      <CustomerContainer customers={customers}/>
-      <HousingContainer housings={housings}/>
+      {/* <CustomerContainer customers={customers}/>
+      <HousingContainer housings={housings}/> */}
 
       
     </div>
@@ -70,3 +80,7 @@ function App() {
 }
 
 export default App;
+
+// {/* <Route path="/appointment">
+//           <Appointments/>
+//         </Route> */}

@@ -5,6 +5,9 @@ class CreateHousings < ActiveRecord::Migration[6.1]
       t.string :image
       t.string :overview
       t.integer :price
+      t.boolean :buy
+      t.boolean :rent
+      t.boolean :sold
 
       t.timestamps
     end
