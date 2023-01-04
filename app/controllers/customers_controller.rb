@@ -53,6 +53,35 @@ class CustomersController < ApplicationController
 
     end
 
+    def update 
+        customer_to_patch = Customer.find_by( id: params[:id] )
+        if customer_to_patch
+
+            customer_to_patch.update( edit_customer_params )
+        
+            if customer_to_patch.valid?
+
+                render json: customer_to_patch
+            
+            else 
+
+                render json: { "errors": customer_to_patch.errors.full_messages}, status: :unprocessable_entity
+            end
+        else
+            render json: { "error": "Customer not found" }, status: :not_found
+        end
+    end
+
+    def destroy
+        customer_deleted = Customer.find_by_id(params[:id])
+        if customer_deleted
+            customer_deleted.destroy
+            head :no_content
+        else
+            render json: { message: "Nothing to delete" }, status: :not_found
+        end
+    end
+
     private 
     # #Issue Finding a Customer
     # def customer_not_found
@@ -68,6 +97,11 @@ class CustomersController < ApplicationController
 
 
     def new_customer_params
+        params.permit(:name, :address, :email, :phone, :age, :username, :password)
+    end
+
+    def edit_customer_params
+        #implicit return with attributes 
         params.permit(:name, :address, :email, :phone, :age, :username, :password)
     end
 end
