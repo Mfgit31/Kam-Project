@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
     #macros - associations & relationships
-    has_many :appointments
+    has_many :appointments, dependent: :destroy
     has_many :housings, through: :appointments
     
     #Activating Bycrypt for our :password_digest
