@@ -22,9 +22,6 @@ function App() {
   .then(data => setCustomers(data))
   }, [])
 
-  
-  
-  
   useEffect(() => {
 
   fetch("/housings")
@@ -32,7 +29,6 @@ function App() {
   .then(r => r.json())
   .then(data => setHousings(data))
   }, [])
-
 
   useEffect(() => {
 
@@ -42,6 +38,20 @@ function App() {
   .then(data => setAppointments(data))
   }, [])
   
+  // useEffect(() => {
+  //   fetch("/me").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((customers) => setCustomers(customers));
+  //     }
+  //   });
+  // }, []);
+
+  // if (customers) {
+  //   return <h2>Welcome, {customers.username}!</h2>;
+  // } else {
+  //   return <Login onLogin={setCustomers} />;
+  // }
+
   function handleLogin(customers) {
     setCustomers(customers);
   }
@@ -60,7 +70,7 @@ function App() {
           <HousingContainer housings={housings} />
         </Route>
         <Route exact path="/login">
-          <Login onLogin={handleLogin} />
+          <Login onLogin={handleLogin} customer = { customers } />
         </Route>
         <Route path="/appointment">
           <AppointmentContainer appointments={appointments} />
