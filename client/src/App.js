@@ -77,10 +77,3 @@ function App() {
 }
 
 export default App;
-
-// {/* <Route path="/appointment">
-//           <Appointments/>
-//         </Route> */}
-
-// /* <CustomerContainer customers={customers}/>
-//     <HousingContainer housings={housings}/>

@@ -10,4 +10,17 @@ class SessionsController < ApplicationController
         session.delete :customer_id
         head :no_content
     end
+
+    def login 
+        byebug
+        customer = Customer.find_by(name:params[:name])
+        byebug
+        if customer&.authenticate(params[:password])
+            byebug
+            #setting customer to sessions
+            render json: customer, status: :ok
+        else
+            render json: {errors: 'Invalid Password or Username'}, status: :unauthorized
+        end
+    end
 end
