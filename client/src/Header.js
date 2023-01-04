@@ -1,7 +1,13 @@
-import {NavLink} from "react-router-dom"
+import {NavLink, Link} from "react-router-dom"
 
 
-const Header = () => {
+const Header = ( {onLogout, customer }) => {
+    function handleLogout() {
+        fetch("/logout", {
+          method: "DELETE",
+        }).then(() => onLogout());
+    }
+
     return (
         <div className="header">
             <h1>KAM</h1>
@@ -28,6 +34,14 @@ const Header = () => {
                     Customer
                 </NavLink>   
             </div>
+            {customer ? (
+                <div>
+                    <p>Welcome, {customer.username}!</p>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            ) : (
+                <Link to="/login">Click Here to Login</Link>
+                )}
         </div>
     )
 }
