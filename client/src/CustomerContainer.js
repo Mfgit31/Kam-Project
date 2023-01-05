@@ -1,16 +1,16 @@
-import CustomerCard from "./CustomerCard";
+// import CustomerCard from "./CustomerCard";
 
 
-function CustomerContainer({customers}){
-    return(
-        <div>
-            {customers.map((customer) => <CustomerCard
-            key={customer.id} customer={customer}/>)}
+// function CustomerContainer({customers}){
+//     return(
+//         <div>
+//             {customers.map((customer) => <CustomerCard
+//             key={customer.id} customer={customer}/>)}
             
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
 
 
-export default CustomerContainer;
+// export default CustomerContainer;

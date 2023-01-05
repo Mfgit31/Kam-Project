@@ -1,16 +1,28 @@
 import { useState } from 'react';
+import { useHistory } from'react-router-dom';
+import  form  from './Form'
 
 function Login( { onLogin, customer } ) {
 
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [passwords, setPasswords] = useState("");
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const [errors, setErrors] = useState([])
+    const history = useHistory()
+    const {name, password} = formData
 
     function handleSubmit(e) {
       e.preventDefault();
       const user = { 
         username: username,
-        password: password
+        password: passwords
       }
+
+      // Logs in user
       fetch("/login", {
         method: "POST",
         headers: {
@@ -20,7 +32,12 @@ function Login( { onLogin, customer } ) {
       })
       .then((r) => {
         if (r.ok) {
-          r.json().then((customer) => onLogin(customer));
+          // r.json().then((customer) => onLogin(customer));
+          r.json().then(customer => {
+            history.push(`/customers/${customer.id}`)
+          })
+        }else {
+          r.json().then(json => setErrors(json.errors))
         }
       });
     }
@@ -45,8 +62,8 @@ return (
             <input
               type="text"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={passwords}
+              onChange={(e) => setPasswords(e.target.value)}
             />
             <br />
         <button type="submit">Login</button>
