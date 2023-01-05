@@ -4,9 +4,20 @@ import {NavLink, Link} from "react-router-dom"
 const Header = ( {onLogout, customer }) => {
     function handleLogout() {
         fetch("/logout", {
-          method: "DELETE",
+        method: "DELETE",
         }).then(() => onLogout());
     }
+    
+    // const handleLogout = () => {
+    //     fetch("/logout", {
+    //     method: "DELETE",
+    //     })
+    //     .then(r => {
+    //         if(r.ok){
+    //             updateCustomer(null)
+    //         }
+    //     })
+    // } 
 
     return (
         <div className="header">
@@ -15,24 +26,24 @@ const Header = ( {onLogout, customer }) => {
             <div className="navbar">
                 <NavLink
                     exact to="/"
-                    activeStyle={{background: "#CCCCFF"}}>
+                    activeStyle={{background: "#D8BFD8"}}>
                     Home
                 </NavLink>
                 <NavLink
                     to="/housing"
-                    activeStyle={{background: "#CCCCFF"}}>
+                    activeStyle={{background: "#D8BFD8"}}>
                     Housing
                 </NavLink> 
                 <NavLink
                     to="/appointment"
-                    activeStyle={{background: "#CCCCFF"}}>
+                    activeStyle={{background: "#D8BFD8"}}>
                     Appointment
                 </NavLink>  
-                <NavLink
+                {/* <NavLink
                     to="/customer"
-                    activeStyle={{background: "#CCCCFF"}}>
+                    activeStyle={{background: "##D8BFD8"}}>
                     Customer
-                </NavLink>   
+                </NavLink>    */}
             </div>
             {customer ? (
                 <div>

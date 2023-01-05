@@ -1,20 +1,13 @@
 class CustomersController < ApplicationController
-
-    # #Rescues
-    #     rescue_from ActiveRecord::RecordNotFound, with: :customer_not_found
-    #     rescue_from ActiveRecord::RecordInvalid, with: :customer_unable_to_create
-    # #Rescues
-
-    # ##before_actions
-    #     before_action :customer_find_method, only: [:index, :show, :create]
-    # ##before_actions
+    #skip_before_action
+    skip_before_action :authorized_customer, only: [:create]
 
     def index
         render json: Customer.all, status: :ok
     end
 
-    def show
-        found_customer = Customer.find_by_id(params[:id])
+    def show                           #change params to session
+        # found_customer = Customer.find(session[:customer_id])
 
         if found_customer
             #sending text response back to viewer
