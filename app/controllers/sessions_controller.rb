@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     
         if customer&.authenticate(params[:password])
             #new code
-            session[:customer_id] = customer.id
+            session[:customer_id] = customer.id #log user in, keep track of user
             #setting customer to sessions
             render json: customer, status: :ok
         else

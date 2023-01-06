@@ -1,5 +1,5 @@
 import {NavLink, Link} from "react-router-dom"
-
+import { useState } from "react";
 
 const Header = ( {onLogout, customer }) => {
     function handleLogout() {
@@ -20,41 +20,38 @@ const Header = ( {onLogout, customer }) => {
     // } 
 
     return (
-        <div className="header">
-            <h1>KAM</h1>
-            <br/>
-            <div className="navbar">
-                <NavLink
-                    exact to="/"
-                    activeStyle={{background: "#D8BFD8"}}>
-                    Home
-                </NavLink>
-                <NavLink
-                    to="/housing"
-                    activeStyle={{background: "#D8BFD8"}}>
-                    Housing
-                </NavLink> 
-                <NavLink
-                    to="/appointment"
-                    activeStyle={{background: "#D8BFD8"}}>
-                    Appointment
-                </NavLink>  
-                {/* <NavLink
+      <div className="header">
+        <h1>KAM</h1>
+        <br />
+        <div className="navbar">
+          <NavLink exact to="/" activeStyle={{ background: "#D8BFD8" }}>
+            Home
+          </NavLink>
+          <NavLink to="/housing" activeStyle={{ background: "#D8BFD8" }}>
+            Housing
+          </NavLink>
+          <NavLink to="/appointment" activeStyle={{ background: "#D8BFD8" }}>
+            Appointment
+          </NavLink>
+          <NavLink to="/signup" activeStyle={{ background: "#D8BFD8" }}>
+           Create Account
+          </NavLink>
+          {/* <NavLink
                     to="/customer"
                     activeStyle={{background: "##D8BFD8"}}>
                     Customer
                 </NavLink>    */}
-            </div>
-            {customer ? (
-                <div>
-                    <p>Welcome, {customer.username}!</p>
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-            ) : (
-                <Link to="/login">Click Here to Login</Link>
-                )}
         </div>
-    )
+        {customer ? (
+          <div>
+            <p>Welcome, {customer.username}!</p>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <Link to="/login">Click Here to Login</Link>
+        )}
+      </div>
+    );
 }
 
 export default Header

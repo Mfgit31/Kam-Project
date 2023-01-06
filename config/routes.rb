@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :appointments, only: [:index, :show, :create]
-  resources :customers, except: [:new, :edit]
+  resources :customers, except: [:new, :edit, :show]
   resources :housings, except: [:new, :edit]
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  get "/authorized", to: "users#show"
+  get "/authorized", to: "customers#show"
+  get "/me", to: "customers#show"
                     
 
 

@@ -7,13 +7,14 @@ class CustomersController < ApplicationController
     end
 
     def show                           #change params to session
-        # found_customer = Customer.find(session[:customer_id])
+        #  found_customer = Customer.find_by_id(session[:customer_id])
 
-        if found_customer
+        if current_customer
             #sending text response back to viewer
-            render json: found_customer, serializer: CustomerShowSerializer
+            
+            render json: current_customer, serializer: CustomerShowSerializer
         else
-            render json: { "error": "Customer not found" }, status: :not_found
+            render json: { "error": "not authenticated" }, status: :unauthorized
         end
     end
 
@@ -35,6 +36,7 @@ class CustomersController < ApplicationController
     # end
     def create 
         new_customer = Customer.new(new_customer_params)
+        byebug
         
         if new_customer.save
             render json: new_customer
