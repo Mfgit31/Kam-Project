@@ -1,24 +1,12 @@
 import {NavLink, Link} from "react-router-dom"
 
 
-const Header = ( {onLogout, customer }) => {
+const Header = ( {onLogout, currentCustomer }) => {
     function handleLogout() {
         fetch("/logout", {
         method: "DELETE",
         }).then(() => onLogout());
     }
-    
-    // const handleLogout = () => {
-    //     fetch("/logout", {
-    //     method: "DELETE",
-    //     })
-    //     .then(r => {
-    //         if(r.ok){
-    //             updateCustomer(null)
-    //         }
-    //     })
-    // } 
-
     return (
         <div className="header">
             <h1>KAM</h1>
@@ -38,23 +26,32 @@ const Header = ( {onLogout, customer }) => {
                     to="/appointment"
                     activeStyle={{background: "#D8BFD8"}}>
                     Appointment
-                </NavLink>  
-                {/* <NavLink
-                    to="/customer"
-                    activeStyle={{background: "##D8BFD8"}}>
-                    Customer
-                </NavLink>    */}
+                </NavLink> 
+                <NavLink to="/signup" activeStyle={{ background: "#D8BFD8" }}>
+                    Create Account
+                </NavLink> 
             </div>
-            {customer ? (
+            {currentCustomer ? (
                 <div>
-                    <p>Welcome, {customer.username}!</p>
+                    <p>Welcome, {currentCustomer.username}!</p>
                     <button onClick={handleLogout}>Logout</button>
+                    <NavLink
+                    to="/updateCustomer"
+                    activeStyle={{background: "#D8BFD8"}}>
+                    My Account
+                    </NavLink>
                 </div>
             ) : (
-                <Link to="/login">Click Here to Login</Link>
-                )}
+                <Link to="/">Click Here to Login</Link>
+            )}
         </div>
     )
 }
-
 export default Header
+
+
+//  {/* <NavLink
+// to="/customer"
+// activeStyle={{background: "##D8BFD8"}}>
+// Customer
+// </NavLink>    */}
